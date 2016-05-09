@@ -2,16 +2,17 @@
   "name": "markdown-it-hubski",
   "version": "1.0.0",
   "description": "Markdown-It pluging for hubski markdown extensions",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "webpack",
+    "prepublish": "npm run build",
     "test": "ava",
     "lint": "eslint --ignore-path .gitignore src tests",
     "esw": "esw -w --ignore-path .gitignore src tests"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/markbahnman/markdown-it-hubski.git"
+    "url": "git+https://github.com/markbahnman/hubski-markdown.git"
   },
   "keywords": [
     "markdown",
@@ -22,9 +23,9 @@
   "author": "Mark Bahnman <mark.bahnman@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/markbahnman/markdown-it-hubski/issues"
+    "url": "https://github.com/markbahnman/hubski-markdown/issues"
   },
-  "homepage": "https://github.com/markbahnman/markdown-it-hubski#readme",
+  "homepage": "https://github.com/markbahnman/hubski-markdown#readme",
   "devDependencies": {
     "ava": "^0.14.0",
     "babel-cli": "^6.8.0",
