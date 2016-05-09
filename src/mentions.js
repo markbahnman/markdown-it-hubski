@@ -5,13 +5,15 @@ function tokenize(state, silent) {
 
   if (silent) { return false; }
 
-  if (marker !== 0x7C/* | */) { return false; }
+  if (marker !== 0x40/* @ */) { return false; }
 
   scanned = state.scanDelims(state.pos, true);
   len = scanned.length;
   ch = String.fromCharCode(marker);
 
   if (len !== 1) { return false; }
+
+  if (scanned.can_open) token = state.push('span', 'span', 1);
 
   for (i = 0; i < len; i++) {
     token         = state.push('text', '', 0);
@@ -29,23 +31,25 @@ function tokenize(state, silent) {
 
   }
 
+  if (scanned.can_close) token = state.push('span', 'span', -1);
+
   state.pos += scanned.length;
 
   return true;
 }
 
 function postProcess(state) {
-  let i, j,
+  let i,
     startDelim,
     endDelim,
     token,
-    loneMarkers = [],
     delimiters = state.delimiters,
     max = state.delimiters.length;
 
   for (i = 0; i < max; i++) {
     startDelim = delimiters[i];
-    if (startDelim.marker !== 0x7C/* | */) {
+
+    if (startDelim.marker !== 0x40/* @ */) {
       continue;
     }
 
@@ -53,26 +57,35 @@ function postProcess(state) {
       continue;
     }
 
+    const usertoken = state.tokens[startDelim.token + 1];
+    const username = usertoken.content;
+    const userlink = `/user/${username}`;
+
     endDelim = delimiters[startDelim.end];
 
     token         = state.tokens[startDelim.token];
-    token.type    = 'quote_open';
-    token.tag     = 'ul';
+    token.type    = 's_open';
+    token.tag     = 'a';
     token.nesting = 1;
-    token.markup  = '|';
+    token.markup  = '@';
     token.content = '';
-    token.attrs   = [ ['class', 'quotetext'] ];
+    token.attrs = [ ['target', '_blank'], ['href', userlink]  ];
 
     token         = state.tokens[endDelim.token];
-    token.type    = 'quote_close';
-    token.tag     = 'ul';
+    token.type    = 's_close';
+    token.tag     = 'a';
     token.nesting = -1;
-    token.markup  = '|';
+    token.markup  = '@';
     token.content = '';
   }
 }
 
 export default function(md, options) {
-  md.inline.ruler.before('emphasis', 'hubski_quote', tokenize);
-  md.inline.ruler2.before('emphasis', 'hubski_quote', postProcess);
+  options = {
+    hubstrike: true,
+    ...options
+  };
+
+  md.inline.ruler.before('emphasis', 'hubski_mentions', tokenize);
+  md.inline.ruler2.before('emphasis', 'hubski_mentions', postProcess);
 }

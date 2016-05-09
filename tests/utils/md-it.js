@@ -1,15 +1,8 @@
 import markdownIt from 'markdown-it';
-import markdownItHubski from '../../index';
+import markdownItHubski from '../../src';
 
 export default (md, options = {}, mdOptions = {}, renderEnv = {}) => {
-  const mdIt = markdownIt({
-    html: true,
-    linkify: true,
-    typography: true,
-    ...mdOptions,
-  })
-    .disable(['heading', 'emphasis', 'strikethrough'])
-    .use(markdownItHubski, options);
+  const mdIt = markdownItHubski(mdOptions);
 
   const mdRender = [];
   if (typeof md === 'string') {

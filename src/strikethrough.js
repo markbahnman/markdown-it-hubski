@@ -40,11 +40,10 @@ function tokenize(state, silent) {
 }
 
 function postProcess(state) {
-  let i, j,
+  let i,
     startDelim,
     endDelim,
     token,
-    loneMarkers = [],
     delimiters = state.delimiters,
     max = state.delimiters.length;
 
