@@ -1,8 +1,8 @@
 {
   "name": "hubski-markdown",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Markdown-It based implementation of hubski's markdown spec",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "build": "webpack",
     "prepublish": "npm run build",
