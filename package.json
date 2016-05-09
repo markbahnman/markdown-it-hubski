@@ -1,7 +1,7 @@
 {
-  "name": "markdown-it-hubski",
+  "name": "hubski-markdown",
   "version": "1.0.0",
-  "description": "Markdown-It pluging for hubski markdown extensions",
+  "description": "Markdown-It based implementation of hubski's markdown spec",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -17,7 +17,6 @@
   "keywords": [
     "markdown",
     "hubski",
-    "markdown-it-plugin",
     "markdown-it"
   ],
   "author": "Mark Bahnman <mark.bahnman@gmail.com>",
