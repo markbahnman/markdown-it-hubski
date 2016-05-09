@@ -34,4 +34,4 @@ export default (options = {}, pluginOptions = {}) => {
            'table',
            'backticks'])
   .use(plugin, pluginOptions);
-}
+};
