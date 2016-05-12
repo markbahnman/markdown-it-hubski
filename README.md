@@ -9,15 +9,15 @@ Complete implementation of Hubski's markdown in javascript, based on markdown-it
 
 ## Install
 
-*node*
+**node**
 
 ```
 npm install hubski-markdown --save
 ```
 
-*browser (CDN)*
+**browser (CDN)**
 
-[npmcdn CDN](https://npmcdn.com/hubski-markdown@1.0.1)
+* [npmcdn CDN](https://npmcdn.com/hubski-markdown@1.0.1)
 
 ## Usage
 
