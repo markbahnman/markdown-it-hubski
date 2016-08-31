@@ -17,7 +17,7 @@ npm install hubski-markdown --save
 
 **browser (CDN)**
 
-* [npmcdn CDN](https://npmcdn.com/hubski-markdown@1.0.1)
+* [unpkg CDN](https://unpkg.com/hubski-markdown@1.0.1)
 
 ## Usage
 
