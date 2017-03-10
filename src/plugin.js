@@ -5,12 +5,14 @@ import strikethrough from './strikethrough';
 import bold from './bold';
 import quote from './quote';
 import text from './text';
+import blockquote from './blockquote';
 import md from 'markdown-it';
 
 function plugin(md, options) {
   // We replace default text rules to add | as a terminating character
   md.inline.ruler.at('text', text);
 
+  blockquote(md, options);
   quote(md, options);
   mentions(md, options);
   tags(md, options);
@@ -21,17 +23,19 @@ function plugin(md, options) {
 
 export default (options = {}, pluginOptions = {}) => {
   return md(options)
-  .disable(['heading',
-           'emphasis',
-           'strikethrough',
-           'code',
-           'fence',
-           'blockquote',
-           'reference',
-           'list',
-           'hr',
-           'html_block',
-           'table',
-           'backticks'])
-  .use(plugin, pluginOptions);
+    .disable([
+      'heading',
+      'emphasis',
+      'strikethrough',
+      'code',
+      'fence',
+      'blockquote',
+      'reference',
+      'list',
+      'hr',
+      'html_block',
+      'table',
+      'backticks'
+    ])
+    .use(plugin, pluginOptions);
 };
